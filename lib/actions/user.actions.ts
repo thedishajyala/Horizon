@@ -34,8 +34,10 @@ export const getUserInfo = async ({ userId }: getUserInfoProps) => {
 
 export const signIn = async ({ email, password }: signInProps) => {
   try {
+    console.log("Signing in with:", email);
     const { account } = await createAdminClient();
     const session = await account.createEmailPasswordSession(email, password);
+    console.log("Session created:", session);
 
     cookies().set("appwrite-session", session.secret, {
       path: "/",
@@ -44,37 +46,43 @@ export const signIn = async ({ email, password }: signInProps) => {
       secure: true,
     });
 
-    const user = await getUserInfo({ userId: session.userId }) 
+    const user = await getUserInfo({ userId: session.userId })
+    console.log("User retrieved:", user);
 
     return parseStringify(user);
   } catch (error) {
     console.error('Error', error);
+    return null;
   }
 }
 
 export const signUp = async ({ password, ...userData }: SignUpParams) => {
   const { email, firstName, lastName } = userData;
-  
+
   let newUserAccount;
 
   try {
+    console.log("Starting sign up for:", email);
     const { account, database } = await createAdminClient();
 
     newUserAccount = await account.create(
-      ID.unique(), 
-      email, 
-      password, 
+      ID.unique(),
+      email,
+      password,
       `${firstName} ${lastName}`
     );
+    console.log("Appwrite user created:", newUserAccount?.$id);
 
-    if(!newUserAccount) throw new Error('Error creating user')
+    if (!newUserAccount) throw new Error('Error creating user')
 
+    console.log("Creating Dwolla customer...");
     const dwollaCustomerUrl = await createDwollaCustomer({
       ...userData,
       type: 'personal'
     })
+    console.log("Dwolla customer URL:", dwollaCustomerUrl);
 
-    if(!dwollaCustomerUrl) throw new Error('Error creating Dwolla customer')
+    if (!dwollaCustomerUrl) throw new Error('Error creating Dwolla customer')
 
     const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl);
 
@@ -86,9 +94,13 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
         ...userData,
         userId: newUserAccount.$id,
         dwollaCustomerId,
-        dwollaCustomerUrl
+        dwollaCustomerUrl,
+        username: `${firstName} ${lastName}`, // Generate username from name
+        passwordHash: password, // Store password (or hash) as required by schema
+        createdDate: new Date().toISOString() // Required by schema
       }
     )
+    console.log("User document created in database");
 
     const session = await account.createEmailPasswordSession(email, password);
 
@@ -101,7 +113,8 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
 
     return parseStringify(newUser);
   } catch (error) {
-    console.error('Error', error);
+    console.error('Error in signUp:', error);
+    throw error;
   }
 }
 
@@ -110,7 +123,7 @@ export async function getLoggedInUser() {
     const { account } = await createSessionClient();
     const result = await account.get();
 
-    const user = await getUserInfo({ userId: result.$id})
+    const user = await getUserInfo({ userId: result.$id })
 
     return parseStringify(user);
   } catch (error) {
@@ -194,7 +207,7 @@ export const exchangePublicToken = async ({
 
     const accessToken = response.data.access_token;
     const itemId = response.data.item_id;
-    
+
     // Get account information from Plaid using the access token
     const accountsResponse = await plaidClient.accountsGet({
       access_token: accessToken,
@@ -212,13 +225,13 @@ export const exchangePublicToken = async ({
     const processorTokenResponse = await plaidClient.processorTokenCreate(request);
     const processorToken = processorTokenResponse.data.processor_token;
 
-     // Create a funding source URL for the account using the Dwolla customer ID, processor token, and bank name
-     const fundingSourceUrl = await addFundingSource({
+    // Create a funding source URL for the account using the Dwolla customer ID, processor token, and bank name
+    const fundingSourceUrl = await addFundingSource({
       dwollaCustomerId: user.dwollaCustomerId,
       processorToken,
       bankName: accountData.name,
     });
-    
+
     // If the funding source URL is not created, throw an error
     if (!fundingSourceUrl) throw Error;
 
@@ -286,7 +299,7 @@ export const getBankByAccountId = async ({ accountId }: getBankByAccountIdProps)
       [Query.equal('accountId', [accountId])]
     )
 
-    if(bank.total !== 1) return null;
+    if (bank.total !== 1) return null;
 
     return parseStringify(bank.documents[0]);
   } catch (error) {

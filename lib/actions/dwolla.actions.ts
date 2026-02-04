@@ -60,6 +60,7 @@ export const createDwollaCustomer = async (
       .then((res) => res.headers.get("location"));
   } catch (err) {
     console.error("Creating a Dwolla Customer Failed: ", err);
+    throw err;
   }
 };
 
