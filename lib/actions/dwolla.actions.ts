@@ -36,6 +36,7 @@ export const createFundingSource = async (
       .then((res) => res.headers.get("location"));
   } catch (err) {
     console.error("Creating a Funding Source Failed: ", err);
+    throw err;
   }
 };
 

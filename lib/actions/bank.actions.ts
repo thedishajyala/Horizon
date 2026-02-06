@@ -115,7 +115,7 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
     };
 
     // sort transactions by date such that the most recent transaction is first
-      const allTransactions = [...transactions, ...transferTransactions].sort(
+    const allTransactions = [...transactions, ...transferTransactions].sort(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
 
@@ -152,12 +152,14 @@ export const getTransactions = async ({
 }: getTransactionsProps) => {
   let hasMore = true;
   let transactions: any = [];
+  let cursor = undefined;
 
   try {
     // Iterate through each page of new transaction updates for item
     while (hasMore) {
       const response = await plaidClient.transactionsSync({
         access_token: accessToken,
+        cursor: cursor,
       });
 
       const data = response.data;
@@ -176,6 +178,7 @@ export const getTransactions = async ({
       }));
 
       hasMore = data.has_more;
+      cursor = data.next_cursor;
     }
 
     return parseStringify(transactions);

@@ -8,10 +8,23 @@ const client = new Client()
 const databases = new Databases(client);
 
 const DATABASE_ID = "6980438c00177223da23";
-const USER_COLLECTION_ID = "users";
+const USER_COLLECTION_ID = "banks";
 
-async function createIndex() {
+async function createAttributeAndIndex() {
     try {
+        console.log("Creating attribute 'userId'...");
+        await databases.createStringAttribute(
+            DATABASE_ID,
+            USER_COLLECTION_ID,
+            "userId",
+            100,
+            true // required
+        );
+        console.log("Attribute 'userId' created.");
+
+        console.log("Waiting for attribute to be available...");
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
         console.log("Creating index for userId...");
         await databases.createIndex(
             DATABASE_ID,
@@ -23,12 +36,8 @@ async function createIndex() {
         );
         console.log("Index 'userId' created successfully!");
     } catch (error) {
-        if (error.code === 409) {
-            console.log("Index already exists.");
-        } else {
-            console.error("Error creating index:", error);
-        }
+        console.error("Error:", error);
     }
 }
 
-createIndex();
+createAttributeAndIndex();

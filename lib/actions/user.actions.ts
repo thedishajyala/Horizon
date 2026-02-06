@@ -42,8 +42,8 @@ export const signIn = async ({ email, password }: signInProps) => {
     cookies().set("appwrite-session", session.secret, {
       path: "/",
       httpOnly: true,
-      sameSite: "strict",
-      secure: true,
+      sameSite: "lax",
+      secure: false,
     });
 
     const user = await getUserInfo({ userId: session.userId })
@@ -107,8 +107,8 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
     cookies().set("appwrite-session", session.secret, {
       path: "/",
       httpOnly: true,
-      sameSite: "strict",
-      secure: true,
+      sameSite: "lax",
+      secure: false,
     });
 
     return parseStringify(newUser);
@@ -254,6 +254,12 @@ export const exchangePublicToken = async ({
     });
   } catch (error) {
     console.error("An error occurred while creating exchanging token:", error);
+    try {
+      const fs = require('fs');
+      fs.writeFileSync('bank-link-error.log', JSON.stringify(error, null, 2) + '\n' + (error instanceof Error ? error.stack : ''));
+    } catch (err) {
+      console.error('Failed to write error log:', err);
+    }
   }
 }
 

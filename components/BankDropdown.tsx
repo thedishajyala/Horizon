@@ -23,6 +23,8 @@ export const BankDropdown = ({
   const router = useRouter();
   const [selected, setSeclected] = useState(accounts[0]);
 
+  if (!selected) return <p className="text-14 font-medium text-gray-500">No bank accounts linked. Please connect a bank.</p>;
+
   const handleBankChange = (id: string) => {
     const account = accounts.find((account) => account.appwriteItemId === id)!;
 

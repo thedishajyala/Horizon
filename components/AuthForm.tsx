@@ -83,11 +83,24 @@ const AuthForm = ({ type }: { type: string }) => {
           password: data.password,
         })
 
-        if (response) router.push('/')
+        if (response) {
+          router.push('/')
+        } else {
+          try {
+            const errorData = await response; // response is null, this won't work.
+            // If response is null, it failed.
+            console.log("Login failed: response is null");
+            //  alert("Login failed. Please checks your credentials."); 
+            // Better to set a form error?
+          } catch (e) { }
+          // For now let's just use the existing catch or add a manual error
+          form.setError('root', { message: 'Login failed. Please check your credentials.' });
+        }
       }
     } catch (error) {
       console.log(error);
-      alert("Sign Up Failed: " + JSON.stringify(error));
+      const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+      alert("Sign In Failed: " + errorMessage);
     } finally {
       setIsLoading(false);
     }
