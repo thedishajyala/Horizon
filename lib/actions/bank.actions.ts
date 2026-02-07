@@ -125,6 +125,11 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
     });
   } catch (error) {
     console.error("An error occurred while getting the account:", error);
+    try {
+      const fs = require('fs');
+      const errorLog = JSON.stringify(error, Object.getOwnPropertyNames(error), 2);
+      fs.appendFileSync('bank-link-error.log', `[getAccount] Error: ${errorLog}\n`);
+    } catch (e) { }
   }
 };
 

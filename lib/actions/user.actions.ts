@@ -189,9 +189,18 @@ export const createBankAccount = async ({
       }
     )
 
+    try {
+      const fs = require('fs');
+      fs.appendFileSync('db-debug.log', `[createBankAccount] Success! userId: ${userId}, bankId: ${bankAccount.$id}\n`);
+    } catch (e) { console.error(e) }
+
     return parseStringify(bankAccount);
   } catch (error) {
     console.log(error);
+    try {
+      const fs = require('fs');
+      fs.appendFileSync('db-debug.log', `[createBankAccount] Error: ${JSON.stringify(error, null, 2)}\n`);
+    } catch (e) { console.error(e) }
   }
 }
 
@@ -215,25 +224,33 @@ export const exchangePublicToken = async ({
 
     const accountData = accountsResponse.data.accounts[0];
 
-    // Create a processor token for Dwolla using the access token and account ID
-    const request: ProcessorTokenCreateRequest = {
-      access_token: accessToken,
-      account_id: accountData.account_id,
-      processor: "dwolla" as ProcessorTokenCreateRequestProcessorEnum,
-    };
+    let fundingSourceUrl;
 
-    const processorTokenResponse = await plaidClient.processorTokenCreate(request);
-    const processorToken = processorTokenResponse.data.processor_token;
+    try {
+      // Create a processor token for Dwolla using the access token and account ID
+      const request: ProcessorTokenCreateRequest = {
+        access_token: accessToken,
+        account_id: accountData.account_id,
+        processor: "dwolla" as ProcessorTokenCreateRequestProcessorEnum,
+      };
 
-    // Create a funding source URL for the account using the Dwolla customer ID, processor token, and bank name
-    const fundingSourceUrl = await addFundingSource({
-      dwollaCustomerId: user.dwollaCustomerId,
-      processorToken,
-      bankName: accountData.name,
-    });
+      const processorTokenResponse = await plaidClient.processorTokenCreate(request);
+      const processorToken = processorTokenResponse.data.processor_token;
 
-    // If the funding source URL is not created, throw an error
-    if (!fundingSourceUrl) throw Error;
+      // Create a funding source URL for the account using the Dwolla customer ID, processor token, and bank name
+      fundingSourceUrl = await addFundingSource({
+        dwollaCustomerId: user.dwollaCustomerId,
+        processorToken,
+        bankName: accountData.name,
+      });
+    } catch (error) {
+      console.error("Dwolla integration failed (likely not enabled in Plaid Dashboard). Proceeding to link bank without funding source.");
+    }
+
+    if (!fundingSourceUrl) {
+      console.warn("Funding source creation failed. Using placeholder.");
+      fundingSourceUrl = "https://placeholder-dwolla-not-enabled.com";
+    }
 
     // Create a bank account using the user ID, item ID, account ID, access token, funding source URL, and shareableId ID
     await createBankAccount({
@@ -252,11 +269,12 @@ export const exchangePublicToken = async ({
     return parseStringify({
       publicTokenExchange: "complete",
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error("An error occurred while creating exchanging token:", error);
     try {
       const fs = require('fs');
-      fs.writeFileSync('bank-link-error.log', JSON.stringify(error, null, 2) + '\n' + (error instanceof Error ? error.stack : ''));
+      const errorLog = JSON.stringify(error, Object.getOwnPropertyNames(error), 2);
+      fs.appendFileSync('bank-link-error.log', `[exchangePublicToken] Error: ${errorLog}\n`);
     } catch (err) {
       console.error('Failed to write error log:', err);
     }

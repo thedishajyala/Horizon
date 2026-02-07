@@ -1,70 +1,76 @@
-{
-  "message": "Request failed with status code 400",
-  "name": "AxiosError",
-  "stack": "AxiosError: Request failed with status code 400\n    at settle (webpack-internal:///(rsc)/./node_modules/axios/dist/node/axios.cjs:1966:12)\n    at Unzip.handleStreamEnd (webpack-internal:///(rsc)/./node_modules/axios/dist/node/axios.cjs:3065:11)\n    at Unzip.emit (node:events:519:35)\n    at endReadableNT (node:internal/streams/readable:1701:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)\n    at Axios.request (webpack-internal:///(rsc)/./node_modules/axios/dist/node/axios.cjs:3876:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async $$ACTION_6 (webpack-internal:///(rsc)/./lib/actions/user.actions.ts:210:40)\n    at async /Users/dishajyala/Horizon/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:418\n    at async rS (/Users/dishajyala/Horizon/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:38:7978)\n    at async r2 (/Users/dishajyala/Horizon/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:41:1251)\n    at async doRender (/Users/dishajyala/Horizon/node_modules/next/dist/server/base-server.js:1438:30)\n    at async cacheEntry.responseCache.get.routeKind (/Users/dishajyala/Horizon/node_modules/next/dist/server/base-server.js:1599:28)\n    at async DevServer.renderToResponseWithComponentsImpl (/Users/dishajyala/Horizon/node_modules/next/dist/server/base-server.js:1507:28)\n    at async DevServer.renderPageComponent (/Users/dishajyala/Horizon/node_modules/next/dist/server/base-server.js:1924:24)\n    at async DevServer.renderToResponseImpl (/Users/dishajyala/Horizon/node_modules/next/dist/server/base-server.js:1962:32)\n    at async DevServer.pipeImpl (/Users/dishajyala/Horizon/node_modules/next/dist/server/base-server.js:920:25)\n    at async NextNodeServer.handleCatchallRenderRequest (/Users/dishajyala/Horizon/node_modules/next/dist/server/next-server.js:272:17)\n    at async DevServer.handleRequestImpl (/Users/dishajyala/Horizon/node_modules/next/dist/server/base-server.js:816:17)\n    at async /Users/dishajyala/Horizon/node_modules/next/dist/server/dev/next-dev-server.js:339:20\n    at async Span.traceAsyncFn (/Users/dishajyala/Horizon/node_modules/next/dist/trace/trace.js:154:20)\n    at async DevServer.handleRequest (/Users/dishajyala/Horizon/node_modules/next/dist/server/dev/next-dev-server.js:336:24)\n    at async invokeRender (/Users/dishajyala/Horizon/node_modules/next/dist/server/lib/router-server.js:174:21)\n    at async handleRequest (/Users/dishajyala/Horizon/node_modules/next/dist/server/lib/router-server.js:353:24)\n    at async requestHandlerImpl (/Users/dishajyala/Horizon/node_modules/next/dist/server/lib/router-server.js:377:13)\n    at async Server.requestListener (/Users/dishajyala/Horizon/node_modules/next/dist/server/lib/start-server.js:141:13)",
-  "config": {
-    "transitional": {
-      "silentJSONParsing": true,
-      "forcedJSONParsing": true,
-      "clarifyTimeoutError": false
-    },
-    "adapter": [
-      "xhr",
-      "http"
-    ],
-    "transformRequest": [
-      null
-    ],
-    "transformResponse": [
-      null
-    ],
-    "timeout": 0,
-    "xsrfCookieName": "XSRF-TOKEN",
-    "xsrfHeaderName": "X-XSRF-TOKEN",
-    "maxContentLength": -1,
-    "maxBodyLength": -1,
-    "env": {},
-    "headers": {
-      "Accept": "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-      "User-Agent": "Plaid Node v23.0.0",
-      "Plaid-Version": "2020-09-14",
-      "PLAID-CLIENT-ID": "6982e165e9f7ce00220ed81c",
-      "PLAID-SECRET": "eb249a6fc1dc9297b0990376f3ea0b",
-      "Content-Length": "144",
-      "Accept-Encoding": "gzip, compress, deflate, br"
-    },
-    "method": "post",
-    "data": "{\"access_token\":\"access-sandbox-0e616ced-9ae8-4913-8b22-0cb8757f0339\",\"account_id\":\"d4wRAnxnlQFyEQG6WnqESQdpbeke8Xu8rz64q\",\"processor\":\"dwolla\"}",
-    "url": "https://sandbox.plaid.com/processor/token/create"
-  },
-  "code": "ERR_BAD_REQUEST",
-  "status": 400
+undefined
+[getAccount] Error: {}
+[getAccount] Error: {}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async TransactionHistory (webpack-internal:///(rsc)/./app/(root)/transaction-history/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
 }
-AxiosError: Request failed with status code 400
-    at settle (webpack-internal:///(rsc)/./node_modules/axios/dist/node/axios.cjs:1966:12)
-    at Unzip.handleStreamEnd (webpack-internal:///(rsc)/./node_modules/axios/dist/node/axios.cjs:3065:11)
-    at Unzip.emit (node:events:519:35)
-    at endReadableNT (node:internal/streams/readable:1701:12)
-    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
-    at Axios.request (webpack-internal:///(rsc)/./node_modules/axios/dist/node/axios.cjs:3876:41)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async $$ACTION_6 (webpack-internal:///(rsc)/./lib/actions/user.actions.ts:210:40)
-    at async /Users/dishajyala/Horizon/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:418
-    at async rS (/Users/dishajyala/Horizon/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:38:7978)
-    at async r2 (/Users/dishajyala/Horizon/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:41:1251)
-    at async doRender (/Users/dishajyala/Horizon/node_modules/next/dist/server/base-server.js:1438:30)
-    at async cacheEntry.responseCache.get.routeKind (/Users/dishajyala/Horizon/node_modules/next/dist/server/base-server.js:1599:28)
-    at async DevServer.renderToResponseWithComponentsImpl (/Users/dishajyala/Horizon/node_modules/next/dist/server/base-server.js:1507:28)
-    at async DevServer.renderPageComponent (/Users/dishajyala/Horizon/node_modules/next/dist/server/base-server.js:1924:24)
-    at async DevServer.renderToResponseImpl (/Users/dishajyala/Horizon/node_modules/next/dist/server/base-server.js:1962:32)
-    at async DevServer.pipeImpl (/Users/dishajyala/Horizon/node_modules/next/dist/server/base-server.js:920:25)
-    at async NextNodeServer.handleCatchallRenderRequest (/Users/dishajyala/Horizon/node_modules/next/dist/server/next-server.js:272:17)
-    at async DevServer.handleRequestImpl (/Users/dishajyala/Horizon/node_modules/next/dist/server/base-server.js:816:17)
-    at async /Users/dishajyala/Horizon/node_modules/next/dist/server/dev/next-dev-server.js:339:20
-    at async Span.traceAsyncFn (/Users/dishajyala/Horizon/node_modules/next/dist/trace/trace.js:154:20)
-    at async DevServer.handleRequest (/Users/dishajyala/Horizon/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
-    at async invokeRender (/Users/dishajyala/Horizon/node_modules/next/dist/server/lib/router-server.js:174:21)
-    at async handleRequest (/Users/dishajyala/Horizon/node_modules/next/dist/server/lib/router-server.js:353:24)
-    at async requestHandlerImpl (/Users/dishajyala/Horizon/node_modules/next/dist/server/lib/router-server.js:377:13)
-    at async Server.requestListener (/Users/dishajyala/Horizon/node_modules/next/dist/server/lib/start-server.js:141:13)
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async TransactionHistory (webpack-internal:///(rsc)/./app/(root)/transaction-history/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[exchangePublicToken] Error: undefined
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Home (webpack-internal:///(rsc)/./app/(root)/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
+[getAccount] Error: {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'accessToken')\n    at $$ACTION_1 (webpack-internal:///(rsc)/./lib/actions/bank.actions.ts:82:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async TransactionHistory (webpack-internal:///(rsc)/./app/(root)/transaction-history/page.tsx:32:21)",
+  "message": "Cannot read properties of undefined (reading 'accessToken')"
+}
