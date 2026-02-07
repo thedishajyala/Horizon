@@ -11,11 +11,11 @@ export default function RootLayout({
       <div className="auth-asset">
         <div>
           <Image
-            src="/icons/auth-image-disha.png"
+            src="/icons/auth-image-disha.png?v=2"
             alt="Auth image"
             width={1000}
             height={1000}
-            className="rounded-l-xl object-cover shadow-2xl scale-125"
+            className="rounded-l-xl object-cover shadow-2xl scale-[1.75]"
           />
         </div>
       </div>
