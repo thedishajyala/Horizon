@@ -13,9 +13,9 @@ export default function RootLayout({
           <Image
             src="/icons/auth-image-disha.png"
             alt="Auth image"
-            width={500}
-            height={500}
-            className="rounded-l-xl object-contain"
+            width={1000}
+            height={1000}
+            className="rounded-l-xl object-cover shadow-2xl scale-125"
           />
         </div>
       </div>
