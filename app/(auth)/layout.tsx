@@ -15,7 +15,7 @@ export default function RootLayout({
             alt="Auth image"
             width={1000}
             height={1000}
-            className="rounded-l-xl object-cover shadow-2xl scale-[1.75]"
+            className="rounded-l-xl object-cover shadow-2xl"
           />
         </div>
       </div>
