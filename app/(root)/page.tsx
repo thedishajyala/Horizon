@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import RecentTransactions from '@/components/RecentTransactions';
 import RightSidebar from '@/components/RightSidebar';
 import TotalBalanceBox from '@/components/TotalBalanceBox';
+import TransactionAlert from '@/components/TransactionAlert';
 import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
 
@@ -39,6 +40,8 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
             totalCurrentBalance={accounts?.totalCurrentBalance}
           />
         </header>
+
+        <TransactionAlert transactions={account?.transactions ?? []} threshold={100} />
 
         <RecentTransactions
           accounts={accountsData}

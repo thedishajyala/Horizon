@@ -376,3 +376,228 @@
     @apply text-16 font-semibold text-black-2 max-xl:hidden;
   }
 }
+
+/* ============================================================
+   🌙 DARK MODE
+   ============================================================ */
+.dark body {
+  background-color: #0f1117;
+  color: #e5e7eb;
+}
+
+.dark .sidebar {
+  background-color: #1a1d27;
+  border-color: #2d3148;
+}
+
+.dark .sidebar-label {
+  color: #d1d5db;
+}
+
+.dark .home-content,
+.dark .transactions,
+.dark .my-banks,
+.dark .payment-transfer {
+  background-color: #0f1117;
+}
+
+.dark .right-sidebar {
+  background-color: #1a1d27;
+  border-color: #2d3148;
+}
+
+.dark .profile-name {
+  color: #f3f4f6;
+}
+
+.dark .profile-email {
+  color: #9ca3af;
+}
+
+.dark .total-balance {
+  background-color: #1e2130;
+  border-color: #2d3148;
+}
+
+.dark .total-balance-label {
+  color: #9ca3af;
+}
+
+.dark .total-balance-amount {
+  color: #f3f4f6;
+}
+
+.dark .header-box-title {
+  color: #f3f4f6;
+}
+
+.dark .header-box-subtext {
+  color: #9ca3af;
+}
+
+.dark .header-2 {
+  color: #f3f4f6;
+}
+
+.dark .recent-transactions-label {
+  color: #f3f4f6;
+}
+
+.dark .view-all-btn {
+  color: #d1d5db;
+  border-color: #374151;
+  background-color: #1e2130;
+}
+
+.dark .bank-info {
+  background-color: #1e2130;
+  border-color: #2d3148;
+}
+
+.dark table thead tr {
+  background-color: #1e2130;
+}
+
+.dark table tbody tr {
+  border-color: #2d3148;
+}
+
+.dark table th,
+.dark table td {
+  color: #d1d5db;
+}
+
+/* ============================================================
+   🌙 Dark Mode Toggle Button
+   ============================================================ */
+.dark-mode-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1.5px solid #e5e7eb;
+  background: transparent;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 4px;
+}
+
+.dark-mode-toggle:hover {
+  background: #f3f4f6;
+}
+
+.dark .dark-mode-toggle {
+  border-color: #374151;
+  color: #d1d5db;
+}
+
+.dark .dark-mode-toggle:hover {
+  background: #1e2130;
+}
+
+@media (max-width: 1280px) {
+  .dark-mode-toggle {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ============================================================
+   🎯 Budget Modal
+   ============================================================ */
+.budget-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.budget-modal {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.dark .budget-modal {
+  background: #1a1d27;
+  border: 1px solid #2d3148;
+}
+
+.budget-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.budget-input {
+  flex: 1;
+  border: 1.5px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  background: #fff;
+  color: #101828;
+  width: 100%;
+}
+
+.budget-input:focus {
+  border-color: #1570ef;
+}
+
+.dark .budget-input {
+  background: #0f1117;
+  border-color: #374151;
+  color: #f3f4f6;
+}
+
+.budget-btn-primary {
+  background: linear-gradient(90deg, #0179FE 0%, #4893FF 100%);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.budget-btn-primary:hover {
+  opacity: 0.9;
+}
+
+.budget-btn-secondary {
+  background: transparent;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1.5px solid #d0d5dd;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.budget-btn-secondary:hover {
+  background: #f3f4f6;
+}
+
+.dark .budget-btn-secondary {
+  color: #d1d5db;
+  border-color: #374151;
+}
+
