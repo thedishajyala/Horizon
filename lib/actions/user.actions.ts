@@ -114,7 +114,7 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
     return parseStringify(newUser);
   } catch (error) {
     console.error('Error in signUp:', error);
-    throw error;
+    return parseStringify({ error: error instanceof Error ? error.message : "Unknown error occurred" });
   }
 }
 
@@ -197,10 +197,7 @@ export const createBankAccount = async ({
     return parseStringify(bankAccount);
   } catch (error) {
     console.log(error);
-    try {
-      const fs = require('fs');
-      fs.appendFileSync('db-debug.log', `[createBankAccount] Error: ${JSON.stringify(error, null, 2)}\n`);
-    } catch (e) { console.error(e) }
+    throw error;
   }
 }
 
@@ -271,13 +268,7 @@ export const exchangePublicToken = async ({
     });
   } catch (error: any) {
     console.error("An error occurred while creating exchanging token:", error);
-    try {
-      const fs = require('fs');
-      const errorLog = JSON.stringify(error, Object.getOwnPropertyNames(error), 2);
-      fs.appendFileSync('bank-link-error.log', `[exchangePublicToken] Error: ${errorLog}\n`);
-    } catch (err) {
-      console.error('Failed to write error log:', err);
-    }
+    return parseStringify({ error: error.message });
   }
 }
 

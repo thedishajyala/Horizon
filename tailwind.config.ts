@@ -74,6 +74,8 @@ const config = {
         "gradient-mesh": "url('/icons/gradient-mesh.svg')",
         "bank-green-gradient":
           "linear-gradient(90deg, #01797A 0%, #489399 100%)",
+        "bank-purple-gradient":
+          "linear-gradient(90deg, #6172F3 0%, #9747FF 100%)",
       },
       boxShadow: {
         form: "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",

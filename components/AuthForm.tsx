@@ -74,6 +74,10 @@ const AuthForm = ({ type }: { type: string }) => {
         const newUser = await signUp(userData);
         console.log("newUser:", newUser);
 
+        if (newUser?.error) {
+          throw new Error(newUser.error);
+        }
+
         setUser(newUser);
       }
 

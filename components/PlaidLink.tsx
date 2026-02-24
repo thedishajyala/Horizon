@@ -21,21 +21,27 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
   }, [user]);
 
   const onSuccess = useCallback<PlaidLinkOnSuccess>(async (public_token: string) => {
-    await exchangePublicToken({
+    const data = await exchangePublicToken({
       publicToken: public_token,
       user,
     })
 
+    if (data?.error) {
+      console.error("Plaid Link Error:", data.error);
+      alert("Failed to connect bank: " + data.error);
+      return;
+    }
+
     router.push('/');
   }, [user])
-  
+
   const config: PlaidLinkOptions = {
     token,
     onSuccess
   }
 
   const { open, ready } = usePlaidLink(config);
-  
+
   return (
     <>
       {variant === 'primary' ? (
@@ -46,9 +52,9 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
         >
           Connect bank
         </Button>
-      ): variant === 'ghost' ? (
+      ) : variant === 'ghost' ? (
         <Button onClick={() => open()} variant="ghost" className="plaidlink-ghost">
-          <Image 
+          <Image
             src="/icons/connect-bank.svg"
             alt="connect bank"
             width={24}
@@ -56,9 +62,9 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
           />
           <p className='hiddenl text-[16px] font-semibold text-black-2 xl:block'>Connect bank</p>
         </Button>
-      ): (
+      ) : (
         <Button onClick={() => open()} className="plaidlink-default">
-          <Image 
+          <Image
             src="/icons/connect-bank.svg"
             alt="connect bank"
             width={24}
