@@ -285,7 +285,3 @@ Feel free to fork, star ⭐, and build on it!
 Made with ❤️ by **[Disha](https://github.com/thedishajyala)**
 
 <br />
-
-⭐ **If you found this useful, please star the repository!** ⭐
-
-</div>
